@@ -1,7 +1,7 @@
 # A model for studying the entrainment of oscillations in a pulse-modulated control system
 > 关于研究脉冲调制控制系统中振荡夹带的模型
 
-##3 libhormo.cpp
+## 3 libhormo.cpp
 > 这段代码是一个用于定义动态系统映射的C++源文件，它可能是AnT系统的一部分。AnT系统看起来是一个仿真或数学建模工具，此代码定义了一个离散时间动态系统。下面是代码旁边的注释和说明：
 
 #include "AnT.hpp"  // 包含AnT系统的头文件。
@@ -47,7 +47,7 @@ extern "C"
 ·实现了一个名为hormo_map的函数，这个函数根据当前状态和参数来计算动态系统的下一个状态。
 ·使用extern "C"，定义了一个connectSystem函数，该函数在加载时由AnT系统调用，以注册hormo_map函数作为系统映射函数。
 ·当这段代码编译成共享库并加载到AnT系统中时，connectSystem函数会被调用，注册hormo_map作为映射函数，允许AnT系统执行离散时间步进，以模拟和分析动态系统的行为。
-##2 ./build-Ant-system.sh文件
+## 2 ./build-Ant-system.sh文件
 > #### 目的
 > (1)这个脚本是一个用于编译和创建共享库（在Windows中称为DLL，在Unix-like系统中称为so）的自动化脚本，特别是为了与AnT系统交互的C++代码。
 > (2)这个脚本执行以下主要步骤：
