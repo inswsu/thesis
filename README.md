@@ -1,9 +1,60 @@
 # A model for studying the entrainment of oscillations in a pulse-modulated control system
 > 关于研究脉冲调制控制系统中振荡夹带的模型
+##3 libhormo.cpp
+> 这段代码是一个用于定义动态系统映射的C++源文件，它可能是AnT系统的一部分。AnT系统看起来是一个仿真或数学建模工具，此代码定义了一个离散时间动态系统。下面是代码旁边的注释和说明：
+#include "AnT.hpp"  // 包含AnT系统的头文件。
 
+// 定义了几个宏以便于引用状态变量和参数。
+#define X_DEF   currentState[0] // 状态变量x。
+#define THETA_DEF   currentState[1] // 状态变量theta。
+
+#define M_PI   3.14159265358979323846 // 定义了π的值。
+
+// 参数宏定义，用于简化代码中参数的引用。
+#define b   parameters[0]
+#define k1  parameters[1]
+// 省略中间部分参数的定义...
+#define T   parameters[8]
+
+#define omega   2*M_PI/T  // 计算角频率。
+#define lambda   -b*T/(2*M_PI)  // 计算lambda参数。
+
+// 动态系统的映射函数。
+bool hormo_map (const Array<real_t>& currentState, const Array<real_t>& parameters, Array<real_t>& RHS){
+	double z = M * (1.0 + cos(THETA_DEF)) + X_DEF;  // 计算z变量。
+	double zhp = pow(z / h, p); // 计算z/h的p次幂。
+	double func_F = k3 * z / (k4 + zhp); // 计算F函数。
+	double func_Phi = k1 + k2 * zhp / (1.0 + zhp); // 计算Phi函数。
+	RHS[0] = exp(lambda * func_Phi) * (X_DEF + func_F); // 计算新的x值。
+	RHS[1] = fmod( THETA_DEF + omega * func_Phi, 2.0 * M_PI);// 计算新的theta值。
+	return true; // 返回true表示映射成功。
+}
+
+// 外部"C"用于防止C++名称修饰，以便AnT系统能够在不知道C++编译细节的情况下调用这些函数。
+extern "C" 
+{
+	// 系统连接函数。
+	void connectSystem ()
+	{
+		MapProxy::systemFunction = hormo_map; // 将hormo_map函数注册为系统函数。
+	}
+}
+#####执行流程:
+·从AnT系统中包含必要的头文件。
+·定义了系统的当前状态和参数的宏，以便更方便地引用。
+·实现了一个名为hormo_map的函数，这个函数根据当前状态和参数来计算动态系统的下一个状态。
+·使用extern "C"，定义了一个connectSystem函数，该函数在加载时由AnT系统调用，以注册hormo_map函数作为系统映射函数。
+·当这段代码编译成共享库并加载到AnT系统中时，connectSystem函数会被调用，注册hormo_map作为映射函数，允许AnT系统执行离散时间步进，以模拟和分析动态系统的行为。
 ##2 ./build-Ant-system.sh文件
 > #### 目的
-> 这个脚本是一个用于编译和创建共享库（在Windows中称为DLL，在Unix-like系统中称为so）的自动化脚本，特别是为了与AnT系统交互的C++代码。
+> (1)这个脚本是一个用于编译和创建共享库（在Windows中称为DLL，在Unix-like系统中称为so）的自动化脚本，特别是为了与AnT系统交互的C++代码。
+> (2)这个脚本执行以下主要步骤：
+·尝试识别并设置系统文件的名称。
+·确认AnT命令的位置和所需的共享库扩展名。
+·设置适合当前操作系统的编译器标志。
+·编译C++源文件，生成对象文件。
+·将对象文件链接为共享库（.dll或.so）。
+·删除中间产物，打印共享库信息。
 > #### 解释代码
 
 \#!/bin/sh
