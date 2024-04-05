@@ -1,11 +1,11 @@
 # A model for studying the entrainment of oscillations in a pulse-modulated control system
 关于研究脉冲调制控制系统中振荡夹带的模型
 
-#!/bin/bash
-# 上面这一行称为shebang，它告诉系统这个脚本应该用哪个解释器来执行，这里指定了bash解释器。
+\#!/bin/bash
+\# 上面这一行称为shebang，它告诉系统这个脚本应该用哪个解释器来执行，这里指定了bash解释器。
 
 pwd
-# 'pwd' 命令打印出当前工作目录的完整路径。
+\# 'pwd' 命令打印出当前工作目录的完整路径。
 
 gnome-terminal --geometry=50x20+800+0 -e "AnT libhormo -m server & bash"
 # 这行命令会开启一个新的gnome-terminal终端窗口，设置其大小和位置（宽50个字符，高20行，距离屏幕左侧800像素，顶部0像素）。
