@@ -1,7 +1,9 @@
 # A model for studying the entrainment of oscillations in a pulse-modulated control system
 > 关于研究脉冲调制控制系统中振荡夹带的模型
+
 ##3 libhormo.cpp
 > 这段代码是一个用于定义动态系统映射的C++源文件，它可能是AnT系统的一部分。AnT系统看起来是一个仿真或数学建模工具，此代码定义了一个离散时间动态系统。下面是代码旁边的注释和说明：
+
 #include "AnT.hpp"  // 包含AnT系统的头文件。
 
 // 定义了几个宏以便于引用状态变量和参数。
