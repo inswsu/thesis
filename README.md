@@ -1,6 +1,7 @@
 # A model for studying the entrainment of oscillations in a pulse-modulated control system
 关于研究脉冲调制控制系统中振荡夹带的模型
-##./star.sh文件
+
+## ./star.sh文件
 \#!/bin/bash
 \# 上面这一行称为shebang，它告诉系统这个脚本应该用哪个解释器来执行，这里指定了bash解释器。
 
