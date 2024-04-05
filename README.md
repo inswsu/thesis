@@ -1,7 +1,8 @@
 # A model for studying the entrainment of oscillations in a pulse-modulated control system
-关于研究脉冲调制控制系统中振荡夹带的模型
+> 关于研究脉冲调制控制系统中振荡夹带的模型
 ##2 ./build-Ant-system.sh文件
-<p>这段代码是一个Bash脚本，通常在Linux环境下运行。这里是逐行的注释：</p>
+
+<p>这段代码是一个Bash脚本，通常在Linux环境下运行。这里是逐行的注释：
 
 
 ##1 ./star.sh文件
