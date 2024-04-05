@@ -68,11 +68,11 @@ if test "x${ANT_SYSTEM_NAME}" = "x" ; then
 fi
 
 \# 检查ANT_TOPDIR环境变量是否被设置。
-if [ "x${ANT_TOPDIR}" = "x" ] ; then
+if $[ "x${ANT_TOPDIR}" = "x" ]$ ; then
   ANT_CMD=AnT  # 如果未设置，则默认命令为AnT。
 
   \# 如果找不到AnT命令，打印错误并退出。
-  if [ "x`which ${ANT_CMD}`" = "x" ] ; then
+  if $[ "x`which ${ANT_CMD}`" = "x" ]$ ; then
     echo "AnT not found!"
     exit 1
   fi
@@ -89,7 +89,7 @@ ANT_SHARED_LIB_EXT=`"${ANT_CMD}" --shared-lib-ext`
 ANT_INSTALLATION_PREFIX=`cd "\`\"${ANT_CMD}\" --installation-prefix\`" && pwd`
 
 \# 根据操作系统确定编译标志。
-if [ "x${ANT_SHARED_LIB_EXT}" = "xdll" ] ; then
+if $[ "x${ANT_SHARED_LIB_EXT}" = "xdll" ]$ ; then
    ANT_CXXFLAGS="-mno-cygwin -mms-bitfields"
    ANT_LDFLAGS="-shared -mno-cygwin"
    ANT_LIB_DIR="bin"
